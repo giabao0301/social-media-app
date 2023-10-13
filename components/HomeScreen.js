@@ -77,8 +77,10 @@ const postsData = [
 
 function HomeScreen() {
   const [posts, setPosts] = useState([...postsData]);
+  const [pressed, setPressed] = useState(false);
 
-  const handleAddLike = (postId, pressed) => {
+  const handleAddLike = postId => {
+    setPressed(pressed => !pressed);
     const updatedPosts = posts.map(post => {
       if (post.id === postId) {
         return pressed
@@ -128,6 +130,7 @@ function HomeScreen() {
           onAddLike={pressed => handleAddLike(post.id, pressed)}
           onAddComment={() => handleAddComment(post.id)}
           onAddShare={() => handleAddShare(post.id)}
+          pressed={pressed}
         />
       ))}
     </ScrollView>

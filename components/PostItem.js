@@ -5,12 +5,7 @@ import Like from 'react-native-vector-icons/AntDesign';
 import Comment from 'react-native-vector-icons/MaterialCommunityIcons';
 import Share from 'react-native-vector-icons/Ionicons';
 
-function PostItem({data, onAddLike, onAddComment, onAddShare}) {
-  const [pressed, setPressed] = useState(false);
-  const handlePress = () => {
-    setPressed(pressed => !pressed);
-    onAddLike(pressed);
-  };
+function PostItem({data, onAddLike, onAddComment, onAddShare, pressed}) {
   return (
     <View style={styles.post}>
       <View style={styles.user}>
@@ -28,7 +23,7 @@ function PostItem({data, onAddLike, onAddComment, onAddShare}) {
       </View>
       <View style={styles.horizontalLine}></View>
       <View style={styles.actions}>
-        <TouchableOpacity style={styles.action} onPress={() => handlePress()}>
+        <TouchableOpacity style={styles.action} onPress={onAddLike(pressed)}>
           <Like
             style={[styles.button, {color: pressed ? '#177ffe' : '#606266'}]}
             name={pressed ? 'like1' : 'like2'}
